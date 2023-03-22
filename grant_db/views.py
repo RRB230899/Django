@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.views import View
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
-from .models import Book
-from .serializers import BookSerializer
+from .models import Book, Rating
+from .serializers import BookSerializer, RatingSerializer
 
 # import io
 # from django.http import FileResponse
@@ -42,3 +42,8 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
     authentication_classes = (TokenAuthentication,)
+
+
+class RatingViewSet(viewsets.ModelViewSet):
+    serializer_class = RatingSerializer
+    queryset = Rating.objects.all()
