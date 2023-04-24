@@ -21,6 +21,23 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def no_of_ratings(self):
+        ratings = Rating.objects.filter(book=self)
+        return len(ratings)
+
+    def avg_ratings(self):
+        ratings = Rating.objects.filter(book=self)
+        sum_of_ratings = 0
+        for i in ratings:
+            sum_of_ratings += i.rating
+
+        if len(ratings) > 0:
+            avg_rating = sum_of_ratings / len(ratings)
+            return avg_rating
+
+        else:
+            return 0
+
 
 class Rating(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)

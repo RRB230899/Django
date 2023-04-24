@@ -18,3 +18,4 @@ class ratingAdmin(admin.ModelAdmin):
     list_display = ['book', 'rating']
     list_filter = ['rating']
     search_fields = ['book']
+
